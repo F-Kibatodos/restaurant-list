@@ -14,9 +14,10 @@ app.get('/', (req, res) => {
 })
 
 app.get('/restaurants/:id', (req, res) => {
-  res.render('show', {
-    restaurant: restaurantList.results[Number(req.params.id) - 1]
+  const restaurant = restaurantList.results.find(item => {
+    return item.id.toString() === req.params.id
   })
+  res.render('show', { restaurant })
 })
 
 app.get('/search', (req, res) => {
